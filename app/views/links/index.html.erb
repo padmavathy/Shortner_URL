@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Links</h1>
+
+<table  class="table">
+  <thead>
+    <tr>
+      <th>Shortened url</th>
+      <th>Ip Address</th>
+      <th>Clicks</th>
+      <th colspan="3"></th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+
+        <td><%= link_to link.shortened_url, link.shortened_url, target: '_blank' %></td>
+        <td><%= @ip_address %></td>
+        <td><%= @client.clicks(link.shortened_url).user_clicks %></td>
+        <td><%= link_to 'Show', link , :class=>"btn btn-primary btn-small"%>
+          <% if user_signed_in? %>
+           <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small"  %><%end%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>

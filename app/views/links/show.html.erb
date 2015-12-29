@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Given url:</strong>
+  <%= @link.given_url %>
+</p>
+
+
+<p>
+  <strong>Clicks:</strong>
+  <%=  @client.clicks(@link.shortened_url).user_clicks %>
+</p>
+
+<%= link_to 'Back', links_path %>

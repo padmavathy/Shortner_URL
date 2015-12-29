@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SHORTENED URL</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <div class="container">
+   <div class="navbar navbar-static-top">
+
+     <a class="navbar-brand" href="/recipes"> <div class="glyphicon glyphicon-link"> Shortened URL</div></a>
+     <div class="nav-collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+         <ul class="nav navbar-nav pull-right">
+           <li class="active"><%= link_to "URL",links_path %></li>
+           <% if user_signed_in? %>
+                 <li><%=link_to "#{current_user.email}"%></li>
+                 <li class="active"><%= link_to "Logout",destroy_user_session_path%></li>
+             <%else%>
+                 <li><%= link_to "Login", new_user_session_path %></li>
+                  <li class="active"><%= link_to "SignUp", new_user_registration_path%></li>
+             <%end%>
+         </ul>
+     </div><!--/.nav-collapse -->
+   </div>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-9">
+      <div id="search_result">
+
+      </div>
+      <div id="main_block">
+         <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
